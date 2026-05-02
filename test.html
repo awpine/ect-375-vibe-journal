@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Connection Test</title>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <div id="result">Loading...</div>
+    <script>
+        const url = 'https://rohzqwuvcxnckzrkyeig.supabase.co';
+        const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvaHpxd3V2Y3huY2t6cmt5ZWlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2NTE0MTEsImV4cCI6MjA5MzIyNzQxMX0.MjHbj_4mIyo_dNg4W4ITla2zT6F2wNAdJ88lh9x1Vsk';
+        
+        fetch(`${url}/auth/v1/health`, {
+            headers: {
+                'apikey': key,
+                'Authorization': `Bearer ${key}`
+            }
+        })
+        .then(async res => {
+            const text = await res.text();
+            document.getElementById('result').innerText = `Status: ${res.status} | Body: ${text}`;
+        })
+        .catch(err => {
+            document.getElementById('result').innerText = `Error: ${err.message}`;
+        });
+    </script>
+</body>
+</html>
